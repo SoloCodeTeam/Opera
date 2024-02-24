@@ -89,3 +89,6 @@
     margin-left: 1vw;
     margin-bottom: .2vw;
 }
+.Message li h5{
+    cursor:pointer;
+}

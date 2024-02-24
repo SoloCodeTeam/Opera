@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios"
 import { API_URL } from "../../utils";
 
-export const GetMessage = createAsyncThunk("message/get" , async () => {
-    return await axios.get(`${API_URL}/message`).then(res => res.data)
+export const GetMessage = createAsyncThunk("message/get" , async (config) => {
+    return await axios.get(`${API_URL}/message`,config).then(res => res.data)
 })
 export const PostMessage = createAsyncThunk("message/post" , async (body) => {
     return await axios.post(`${API_URL}/message`, body).then(res => res.data)

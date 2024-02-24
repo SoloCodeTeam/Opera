@@ -16,12 +16,14 @@ function SignPage() {
       password: namePassUp.current.value
     }
     try {
-      const res =  await axios.post(`${API_URL}/auth/login`, body)
+      const res =  await axios.post(`${API_URL}/login`, body)
       setError(false) 
-      window.localStorage.setItem("AuthToken", res.data.data)
+      console.log(res);
+      window.localStorage.setItem("AuthToken", res.data.token)
       navlink("/admin")
     } catch (error) {
       setError(true)
+      console.log(error);
     }
     }
     const HandleNav = () => {

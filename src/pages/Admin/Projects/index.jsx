@@ -208,7 +208,7 @@ function Projects() {
             <button className='ProjectsNavBtn' onClick={AddProject}>+<i className='fa-solid fa-folder'></i> Add Project</button>
         </div>
         <ul>
-            {dataProject.getProject.Success == true ? dataProject.getProject?.Data.data.data.map((elem, index) => 
+            {dataProject.getProject.Success == true ? dataProject.getProject?.Data.map((elem, index) => 
             <li key={index}>
                 <img src={elem.img} alt="img" />
                 <h3>{elem.title}</h3>

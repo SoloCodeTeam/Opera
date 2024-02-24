@@ -17,11 +17,12 @@ function ProjectComponent(props) {
         navigate('/more')
         window.localStorage.setItem('moreId', e.target.value)
     }
+    console.log(dataProject.getProject.Data);
     return (
         <div className="projectComp">
                 <h1>{t("Navbar.2")}</h1>
                 <ul>
-                {dataProject.getProject.Success == true ? dataProject.getProject?.Data.data.data.map((elem, index) => 
+                {dataProject.getProject.Success == true ? dataProject.getProject?.Data.map((elem, index) => 
                     <li key={index}>
                         <button value={elem.id} onClick={ProjectOptional}></button>
                         <img src={elem.img} alt="img" />

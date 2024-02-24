@@ -17,7 +17,7 @@ function Blog() {
   const dataBlog = useSelector(state => state.blog)
   const config = {
     headers:{
-        Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}` 
+        token: `${window.localStorage.getItem("AuthToken")}` 
     }
   }
   useEffect(() => {
@@ -84,7 +84,7 @@ function Blog() {
         <button className='BlogNavBtn' onClick={() => {SetBlogModal(true);BlogOverlay.current.style.display="block"}}>+<i className='fa-solid fa-user'></i>  Add Admin</button>
         </div>
       <ul>
-      {dataBlog.getBlog.Success == true ? dataBlog.getBlog?.Data.data.data.map((elem, index) => 
+      {dataBlog.getBlog.Success == true ? dataBlog.getBlog?.Data.map((elem, index) => 
         <li key={index}>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU" alt="" />
             <h3>Name: {elem.name}</h3>
