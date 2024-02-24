@@ -27,7 +27,6 @@ function Blog() {
     const id = del1.current.value
     await dispatch(DeleteBlog({config, id}))
     await dispatch(GetBlog(config))
-    navigate("/sign")
   }
   const HandleSubmit = async(e) => {
     e.preventDefault();
@@ -55,7 +54,7 @@ function Blog() {
   const HandleEdit = async(e) => {
     BlogOverlay.current.style.display="block";
     SetBlogModal1(true);
-    }
+  }
   return (
     <div className="Blog">
       <div className="overlay" ref={BlogOverlay} onClick={() => {SetBlogModal(false);BlogOverlay.current.style.display = "none";SetBlogModal1(false)}}></div>
@@ -89,8 +88,8 @@ function Blog() {
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU" alt="" />
             <h3>Name: {elem.name}</h3>
             <div className="AdBtnBox">
-                <button value={elem.id} ref={del1} onClick={blogDelete}><i className="fa-solid fa-trash"></i>Delete</button>
-                <button value={elem.id} ref={editor1} onClick={HandleEdit}><i className="fa-solid fa-edit"></i>Edit</button>
+                <button value={elem._id} ref={del1} onClick={blogDelete}><i className="fa-solid fa-trash"></i>Delete</button>
+                <button value={elem._id} ref={editor1} onClick={HandleEdit}><i className="fa-solid fa-edit"></i>Edit</button>
             </div>
         </li>)
         :dataBlog.getBlog.Loading == true ? <i className="loading fa-solid fa-spinner fa-spin-pulse"></i> : dataBlog.getBlog.Error == true ? <h3 className='Error'><i className="fa-solid fa-triangle-exclamation fa-fade"></i> Error 500</h3> : null}

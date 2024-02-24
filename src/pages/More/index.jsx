@@ -16,7 +16,6 @@ function MorePage() {
     useEffect(() => {
         dispatch(GetProjectId(window.localStorage.getItem('moreId')))
     },[])
-    console.log(dataGetProject.getProjectId?.Data);
     return(
         <div className="MorePage">
             <Navbar/>
@@ -25,12 +24,12 @@ function MorePage() {
                     {dataGetProject.getProjectId.Success == true ?
                     <div className="MoreInbox">
                         <span>
-                            <img src={dataGetProject.getProjectId?.Data.data.img} alt="img" />
-                            <h2>{dataGetProject.getProjectId?.Data.data.title}</h2>
+                            <img src={dataGetProject.getProjectId?.Data.img} alt="img" />
+                            <h2>{dataGetProject.getProjectId?.Data.title}</h2>
                         </span>
                             <div className="Photos">
-                                {dataGetProject.getProjectId?.Data.data.images.map(elem => 
-                                    <img key={elem.id} src={elem.img} alt="img" />
+                                {dataGetProject.getProjectId?.Data.images.map(elem => 
+                                    <img key={elem.id} src={elem.image} alt="img" />
                                 )}
                             </div>
                     </div>
