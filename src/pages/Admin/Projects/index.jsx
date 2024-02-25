@@ -51,7 +51,7 @@ function Projects() {
         setmoreUploadImage(imgsUpload)
     }
     const deleteImage = async(e) => {
-        const config = {headers:{Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}`}}
+        const config = {headers:{token: `${window.localStorage.getItem("AuthToken")}`}}
         let id = e.target.id
         await dispatch(DeleteImage({id, config}))
     }
@@ -80,7 +80,7 @@ function Projects() {
         const postImage = async () => {
             try {
                 const response = await axios.post(`${IMAGE_URL}`, formData)
-                const config = {headers:{Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}`}}
+                const config = {headers:{token: `${window.localStorage.getItem("AuthToken")}`}}
                 const body = {image: response?.data.secure_url}
                 const id = imgId
                 await dispatch(PutImage({id,body,config}))
@@ -94,7 +94,7 @@ function Projects() {
     const projectDelete = async(e) => {
         const config = {
             headers:{
-                Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}` 
+                token: `${window.localStorage.getItem("AuthToken")}` 
             }
         }
         let id = e.target.value
@@ -125,7 +125,7 @@ function Projects() {
         }
         const config = {
             headers:{
-                Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}` 
+                token: `${window.localStorage.getItem("AuthToken")}` 
             }
         }
         await dispatch(PostProject({body, config}))
@@ -142,7 +142,7 @@ function Projects() {
             img: editMainImages
         }
         let id = moreEdit.data.id
-        const config = {headers:{Authorization: `Bearer ${window.localStorage.getItem("AuthToken")}`}}
+        const config = {headers:{token: `Bearer ${window.localStorage.getItem("AuthToken")}`}}
         const data = {
             images: moreUploadImage
         }
@@ -167,8 +167,12 @@ function Projects() {
                 <h4>Enter Project Title</h4>
                 <input type="text" ref={name} placeholder='Enter Project Name' required/>
                 <h4>Choose Project Main Photo</h4>
-                {loading ? <p className='yellowLoading'>Loading...</p> : <input type="file" id="noneId" onChange={HandleFile} />}
-                <button type="submit">Add</button>
+                {loading ? <p className='yellowLoading'>Loading...</p> : imgUpload ? 
+                <div className='CreateProject'>
+                    <img src={imgUpload}/>
+                    <button className="fa-solid fa-repeat" onClick={() => setImgUpload(null)}></button>
+                </div> : <input type="file" id="noneId" onChange={HandleFile} />}
+                {loading ? <button type="submit" style={{opacity: .3}} disabled>Add</button> : <button type="submit">Add</button> }
             </div>
         </form> :null}
         {projectModal1 ? <form onSubmit={HandleSubmit1} className="projectModal">

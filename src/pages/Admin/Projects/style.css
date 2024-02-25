@@ -44,7 +44,7 @@
     margin-top: 8%;
 }
 .Projects li{
-    width: 30%;
+    width: 33%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -95,10 +95,9 @@
     overflow-y: auto;
 }
 .projectModal div{
-    margin: 1vw 2vw;
     display: flex;
     flex-direction: column;
-    padding: .4vw;
+    padding: 1vw;
 }
 .projectModal h3{
     font-size: 2vw;
@@ -163,4 +162,19 @@
 }
 .editImageBox div button:nth-child(1){
     background-color: red;
+}
+.CreateProject {
+    width: 100%;
+    position: relative;
+}
+.CreateProject img{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.CreateProject span button{
+    padding: 1vw;
+    position: absolute;
+    bottom: 1vw;
+    left: 10vw;
 }
