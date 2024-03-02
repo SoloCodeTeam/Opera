@@ -49,6 +49,7 @@ function Projects() {
             postImage()
           }
         setmoreUploadImage(imgsUpload)
+        console.log(imgsUpload);
     }
     const deleteImage = async(e) => {
         const config = {headers:{token: `${window.localStorage.getItem("AuthToken")}`}}
@@ -104,9 +105,8 @@ function Projects() {
     const projectEdit = async(e) => {
         const data = await dispatch(GetProjectId(e.target.id))
         await setMoreEdit(data.payload);
-        console.log(moreEdit);
-        setEditTitle(data.payload.data.title)
-        setEditMainImages(data.payload.data.img)
+        setEditTitle(data.payload.title)
+        setEditMainImages(data.payload.img)
         moreImages.current.value = []
         projectOverlay.current.style.display = "block"
         setmoreUploadImage(null)
@@ -141,12 +141,11 @@ function Projects() {
             title: editTitle,
             img: editMainImages
         }
-        let id = moreEdit.data.id
-        const config = {headers:{token: `Bearer ${window.localStorage.getItem("AuthToken")}`}}
+        let id = moreEdit.id
+        const config = {headers:{token: `${window.localStorage.getItem("AuthToken")}`}}
         const data = {
             images: moreUploadImage
         }
-        console.log(data);  
         await dispatch(PostImage({id, data,config}))
         await dispatch(PutProject({body, id, config}))
         dispatch(GetProject())
@@ -183,20 +182,20 @@ function Projects() {
                 <h4>Edit Project Main Photo</h4>
                 {loading ? <p className='yellowLoading'>Loading...</p> :
                 <div className="editImageBox">
-                <img src={moreEdit.data.img} alt="img" />
+                <img src={editMainImages} alt="img" />
                     <div className='AdBtnBox'>
                         <button onClick={() => inputMain.current.click()} type="button"><i className="fa-solid fa-edit"></i></button>
                         <input ref={inputMain} type="file" onChange={HandleFile}/>
                     </div>
                 </div>}
                 <h4>Edit Project More Photos</h4>
-                {moreEdit.data.images.length > 0 ?
-                 moreEdit.data.images.map((e,i) => <span key={i}>{imagesLoading ? <p className='yellowLoading'>Loading ...</p>
+                {moreEdit.images.length > 0 ?
+                 moreEdit.images.map((e,i) => <span key={i}>{imagesLoading ? <p className='yellowLoading'>Loading ...</p>
                      :<div className="editImageBox">
-                        <img src={e.img} alt="img" />
+                        <img src={e.image} alt="img" />
                         <div className='AdBtnBox'>
-                            <button id={e.id} onClick={deleteImage} type="button"><i className="fa-solid fa-trash" id={e.id} onClick={deleteImage}></i></button>
-                            <button id={e.id} onClick={(el) => {setImgId(el.target.id);input.current.click();}} type="button"><i className="fa-solid fa-edit" id={e.id}></i></button>
+                            <button id={e._id} onClick={deleteImage} type="button"><i className="fa-solid fa-trash" id={e.id} onClick={deleteImage}></i></button>
+                            <button id={e._id} onClick={(el) => {setImgId(el.target.id);input.current.click();}} type="button"><i className="fa-solid fa-edit" id={e._id}></i></button>
                             <input ref={input} id={e.id} type="file" onChange={HandleEditImagesFile}/>
                         </div>
                     </div>
