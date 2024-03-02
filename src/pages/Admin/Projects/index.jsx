@@ -203,7 +203,7 @@ function Projects() {
                  : <p>No Photos here yet</p>}
                 <h4>Add Other More Photo</h4>
                 {moreLoading ? <p className='yellowLoading'>Loading ...</p> :<input type="file" onChange={UploadFile} multiple />}
-                <button type="submit">Edit</button>
+                {moreLoading ? <button type="submit" style={{opacity: .3}} disabled>Edit</button> : <button type="submit">Edit</button> }
             </div>
         </form> :null}
         <div className="ProjectsNav">

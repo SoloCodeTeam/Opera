@@ -3,6 +3,7 @@ import "./style.css";
 import Select from "../Select/Select.jsx";
 
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 function Navbar() {
     const { t, i18n } = useTranslation();
     const barsSide = useRef();
@@ -10,6 +11,7 @@ function Navbar() {
     const btnClose = useRef();
     const stP = useRef()
     const ndP = useRef()
+    const navlink = useNavigate()
     const HandleOpenSide = () => {
         btnClose.current.style.display = 'block'
         btnOpen.current.style.display = 'none'
@@ -25,10 +27,10 @@ function Navbar() {
             <div className="Navbar">
                 <img src="https://res.cloudinary.com/dnuh1ejtz/image/upload/v1675857963/download_fimwgc.png" alt="" />
                 <ul>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/';}}>{t("Navbar.0")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/#1';}}>{t("Navbar.1")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/Portfolio';}}>{t("Navbar.2")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/#2';}}>{t("Navbar.3")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/');}}>{t("Navbar.0")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/#1');}}>{t("Navbar.1")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/Portfolio');}}>{t("Navbar.2")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/#2');}}>{t("Navbar.3")}</button></h3></li>
                     <li>
                         <Select />
                     </li>
@@ -41,10 +43,10 @@ function Navbar() {
             </div>
             <div className="BarsSide" ref={barsSide}>
                 <ul>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/';}}>{t("Navbar.0")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/#1';}}>{t("Navbar.1")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/Portfolio';}}>{t("Navbar.2")}</button></h3></li>
-                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); window.location.href = '/#2';}}>{t("Navbar.3")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/');}}>{t("Navbar.0")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/#1');}}>{t("Navbar.1")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/Portfolio');}}>{t("Navbar.2")}</button></h3></li>
+                    <li><h3><button onClick={(e) => {e.preventDefault();HandleCloseSide(); navlink('/#2');}}>{t("Navbar.3")}</button></h3></li>
                     <li>
                         <Select/>
                     </li>

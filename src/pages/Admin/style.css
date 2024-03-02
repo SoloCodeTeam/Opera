@@ -120,6 +120,7 @@
     font-size: 1vw;
 } */
 
+
 @media screen and (max-width: 650px) {
     .Sidebar{
         position: fixed;
